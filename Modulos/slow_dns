@@ -9,7 +9,7 @@ CORTITLE='\033[1;41m'
 DIR='/etc/VPSManager/dns'
 SCOLOR='\033[0m'
 
-echo -e "${CORTITLE}🐉ㅤDRAGON VPS MANAGER SLOW DNS (Beta)ㅤ🐉${SCOLOR}"
+echo -e "${CORTITLE}🐉Filterchi VPS MANAGER SLOW DNS (Beta)ㅤ🐉${SCOLOR}"
 installslowdns() {
     echo -e "\n${YELLOW}BE AWARE THAT THIS METHOD IS STILL IN THE BETA PHASE AND THAT BEYOND BEING SLOW IT MAY NOT WORK PERFECTLY ! ${SCOLOR}\n"
     echo -ne "${GREEN}DO YOU WANT TO CONTINUE THE INSTALLATION? ${YELLOW}[s/n]:${SCOLOR} "
@@ -20,7 +20,7 @@ installslowdns() {
 	    conexao
 	}
     mkdir /etc/VPSManager/dns >/dev/null 2>&1
-    wget -P $DIR https://github.com/januda-ui/DRAGON-VPS-MANAGER/raw/main/Modulos/dns-server >/dev/null 2>&1  
+    wget -P $DIR https://github.com/shindiria/Filterchi-VPS-Manager/raw/main/Modulos/dns-server >/dev/null 2>&1  
     chmod 777 $DIR/dns-server >/dev/null 2>&1
     $DIR/dns-server -gen-key -privkey-file $DIR/server.key -pubkey-file $DIR/server.pub >/dev/null 2>&1
     configdns() {
@@ -74,7 +74,7 @@ initslow() {
         keypub=$(cat $DIR/server.pub)
         cd $HOME
         echo "ps x | grep 'slow_dns' | grep -v 'grep' || screen -dmS slow_dns $DIR/dns-server -udp :5300 -privkey-file /etc/VPSManager/dns/server.key ${ns} 0.0.0.0:${ptdns}" >> /etc/autostart
-        tmx='curl -sO https://github.com/januda-ui/DRAGON-VPS-MANAGER/raw/main/Modulos/slowdns && chmod +x slowdns && ./slowdns'
+        tmx='curl -sO https://github.com/shindiria/Filterchi-VPS-Manager/raw/main/Modulos/slowdns && chmod +x slowdns && ./slowdns'
         echo -e "\n${GREEN}SLOWDNS ENABLED !${SCOLOR}"
         echo -e "\n${YELLOW}TERMUX COMMAND${SCOLOR}: ${tmx} ${ns} ${keypub}"
         echo -ne "\n${RED}ENTER${YELLOW} to return to${GREEN} MENU!${SCOLOR}"; read
